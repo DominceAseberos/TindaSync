@@ -693,14 +693,14 @@ function App() {
                     <p className="muted">{product.unitsSold} units sold</p>
                   </div>
                 </div>
-                <div style={{ width: '80px', height: '28px' }}>
+                <div style={{ width: '120px', height: '28px' }}>
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={[{ s: product.platformSales.shopee, l: product.platformSales.lazada, f: product.platformSales.facebook, t: product.platformSales.tiktok }]}>
-                      <Tooltip cursor={{ fill: 'transparent' }} contentStyle={{ fontSize: '11px', padding: '4px' }} />
-                      <Bar dataKey="s" stackId="a" fill="#EE4D2D" radius={[2, 2, 2, 2]} />
-                      <Bar dataKey="l" stackId="a" fill="#000080" radius={[2, 2, 2, 2]} />
-                      <Bar dataKey="f" stackId="a" fill="#0866FF" radius={[2, 2, 2, 2]} />
-                      <Bar dataKey="t" stackId="a" fill="#000000" radius={[2, 2, 2, 2]} />
+                    <BarChart data={[{ Shopee: product.platformSales.shopee, Lazada: product.platformSales.lazada, Facebook: product.platformSales.facebook, TikTok: product.platformSales.tiktok }]}>
+                      <Tooltip cursor={{ fill: 'transparent' }} contentStyle={{ fontSize: '11px', padding: '4px' }} labelFormatter={() => ''} />
+                      <Bar dataKey="Shopee" stackId="a" fill="#EE4D2D" radius={[2, 2, 2, 2]} />
+                      <Bar dataKey="Lazada" stackId="a" fill="#000080" radius={[2, 2, 2, 2]} />
+                      <Bar dataKey="Facebook" stackId="a" fill="#0866FF" radius={[2, 2, 2, 2]} />
+                      <Bar dataKey="TikTok" stackId="a" fill="#000000" radius={[2, 2, 2, 2]} />
                     </BarChart>
                   </ResponsiveContainer>
                 </div>
