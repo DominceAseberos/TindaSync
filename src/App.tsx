@@ -454,16 +454,6 @@ function App() {
     })
   }
 
-  const maxChartTotal = Math.max(
-    ...earnings.map(
-      (day) =>
-        day.byPlatform.shopee +
-        day.byPlatform.lazada +
-        day.byPlatform.facebook +
-        day.byPlatform.tiktok,
-    ),
-  )
-
   const chartData = useMemo(() => {
     return earnings.map((day) => ({
       ...day,
