@@ -22,6 +22,7 @@ type Product = {
   lowStockThreshold: number
   unitsSold: number
   platformStocks: Record<PlatformId, number>
+  platformSales: Record<PlatformId, number>
   image?: string
 }
 
@@ -121,6 +122,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 3,
     unitsSold: 42,
     platformStocks: { shopee: 10, lazada: 10, facebook: 10, tiktok: 10 },
+    platformSales: { shopee: 18, lazada: 12, facebook: 4, tiktok: 8 },
     image: '/prod-1.png',
   },
   {
@@ -133,6 +135,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 5,
     unitsSold: 67,
     platformStocks: { shopee: 18, lazada: 18, facebook: 18, tiktok: 18 },
+    platformSales: { shopee: 30, lazada: 15, facebook: 10, tiktok: 12 },
     image: '/prod-2.png',
   },
   {
@@ -145,6 +148,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 4,
     unitsSold: 33,
     platformStocks: { shopee: 7, lazada: 7, facebook: 7, tiktok: 7 },
+    platformSales: { shopee: 12, lazada: 8, facebook: 3, tiktok: 10 },
     image: '/prod-3.png',
   },
   {
@@ -157,6 +161,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 4,
     unitsSold: 29,
     platformStocks: { shopee: 14, lazada: 14, facebook: 14, tiktok: 14 },
+    platformSales: { shopee: 10, lazada: 10, facebook: 6, tiktok: 3 },
     image: '/prod-4.png',
   },
   {
@@ -169,6 +174,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 3,
     unitsSold: 21,
     platformStocks: { shopee: 6, lazada: 6, facebook: 6, tiktok: 6 },
+    platformSales: { shopee: 9, lazada: 5, facebook: 4, tiktok: 3 },
     image: '/prod-5.png',
   },
 ]
@@ -448,6 +454,12 @@ function App() {
         facebook: stock,
         tiktok: stock,
       },
+      platformSales: {
+        shopee: 0,
+        lazada: 0,
+        facebook: 0,
+        tiktok: 0,
+      },
     }
 
     setProducts((prev) => [newProduct, ...prev])
@@ -683,7 +695,7 @@ function App() {
                 </div>
                 <div style={{ width: '80px', height: '28px' }}>
                   <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={[{ s: product.platformStocks.shopee, l: product.platformStocks.lazada, f: product.platformStocks.facebook, t: product.platformStocks.tiktok }]}>
+                    <BarChart data={[{ s: product.platformSales.shopee, l: product.platformSales.lazada, f: product.platformSales.facebook, t: product.platformSales.tiktok }]}>
                       <Tooltip cursor={{ fill: 'transparent' }} contentStyle={{ fontSize: '11px', padding: '4px' }} />
                       <Bar dataKey="s" stackId="a" fill="#EE4D2D" radius={[2, 2, 2, 2]} />
                       <Bar dataKey="l" stackId="a" fill="#000080" radius={[2, 2, 2, 2]} />
