@@ -280,6 +280,19 @@
 }
 .list-row p { font-weight: 500; }
 .list-row p.muted { font-size: 13px; margin-top: 2px; }
+.list-row-info, .detail-row-info {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.product-image {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
 
 .best {
   grid-column: span 6;

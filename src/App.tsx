@@ -22,6 +22,7 @@ type Product = {
   lowStockThreshold: number
   unitsSold: number
   platformStocks: Record<PlatformId, number>
+  image?: string
 }
 
 type Order = {
@@ -120,6 +121,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 3,
     unitsSold: 42,
     platformStocks: { shopee: 10, lazada: 10, facebook: 10, tiktok: 10 },
+    image: '/prod-1.png',
   },
   {
     id: 'prod-2',
@@ -131,6 +133,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 5,
     unitsSold: 67,
     platformStocks: { shopee: 18, lazada: 18, facebook: 18, tiktok: 18 },
+    image: '/prod-2.png',
   },
   {
     id: 'prod-3',
@@ -142,6 +145,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 4,
     unitsSold: 33,
     platformStocks: { shopee: 7, lazada: 7, facebook: 7, tiktok: 7 },
+    image: '/prod-3.png',
   },
   {
     id: 'prod-4',
@@ -153,6 +157,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 4,
     unitsSold: 29,
     platformStocks: { shopee: 14, lazada: 14, facebook: 14, tiktok: 14 },
+    image: '/prod-4.png',
   },
   {
     id: 'prod-5',
@@ -164,6 +169,7 @@ const initialProducts: Product[] = [
     lowStockThreshold: 3,
     unitsSold: 21,
     platformStocks: { shopee: 6, lazada: 6, facebook: 6, tiktok: 6 },
+    image: '/prod-5.png',
   },
 ]
 
@@ -640,11 +646,14 @@ function App() {
           <div className="list">
             {lowStock.map((product) => (
               <div className="list-row" key={product.id}>
-                <div>
-                  <p>{product.name}</p>
-                  <p className="muted">
-                    {product.masterStock} left · threshold {product.lowStockThreshold}
-                  </p>
+                <div className="list-row-info">
+                  {product.image && <img src={product.image} alt={product.name} className="product-image" />}
+                  <div>
+                    <p>{product.name}</p>
+                    <p className="muted">
+                      {product.masterStock} left · threshold {product.lowStockThreshold}
+                    </p>
+                  </div>
                 </div>
                 <button type="button" className="tertiary">
                   Restock
@@ -665,9 +674,12 @@ function App() {
           <div className="list">
             {bestSellers.map((product) => (
               <div className="list-row" key={product.id}>
-                <div>
-                  <p>{product.name}</p>
-                  <p className="muted">{product.unitsSold} units sold</p>
+                <div className="list-row-info">
+                  {product.image && <img src={product.image} alt={product.name} className="product-image" />}
+                  <div>
+                    <p>{product.name}</p>
+                    <p className="muted">{product.unitsSold} units sold</p>
+                  </div>
                 </div>
                 <div style={{ width: '80px', height: '28px' }}>
                   <ResponsiveContainer width="100%" height="100%">
@@ -726,15 +738,21 @@ function App() {
                 <span className={`badge large ${selectedOrder.platformId}`}></span>
               </div>
               <div className="detail-items">
-                {selectedOrder.items.map((item) => (
-                  <div className="detail-row" key={item.productId}>
-                    <div>
-                      <p>{item.name}</p>
-                      <p className="muted">Qty {item.qty}</p>
+                {selectedOrder.items.map((item) => {
+                  const product = products.find((p) => p.id === item.productId)
+                  return (
+                    <div className="detail-row" key={item.productId}>
+                      <div className="detail-row-info">
+                        {product?.image && <img src={product.image} alt={item.name} className="product-image" />}
+                        <div>
+                          <p>{item.name}</p>
+                          <p className="muted">Qty {item.qty}</p>
+                        </div>
+                      </div>
+                      <p className="price">{formatCurrency(item.price)}</p>
                     </div>
-                    <p className="price">{formatCurrency(item.price)}</p>
-                  </div>
-                ))}
+                  )
+                })}
               </div>
               <div className="detail-footer">
                 <div>
