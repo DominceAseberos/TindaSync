@@ -693,16 +693,19 @@ function App() {
                     <p className="muted">{product.unitsSold} units sold</p>
                   </div>
                 </div>
-                <div style={{ width: '120px', height: '28px' }}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <BarChart data={[{ Shopee: product.platformSales.shopee, Lazada: product.platformSales.lazada, Facebook: product.platformSales.facebook, TikTok: product.platformSales.tiktok }]}>
-                      <Tooltip cursor={{ fill: 'transparent' }} contentStyle={{ fontSize: '11px', padding: '4px' }} labelFormatter={() => ''} />
-                      <Bar dataKey="Shopee" stackId="a" fill="#EE4D2D" radius={[2, 2, 2, 2]} />
-                      <Bar dataKey="Lazada" stackId="a" fill="#000080" radius={[2, 2, 2, 2]} />
-                      <Bar dataKey="Facebook" stackId="a" fill="#0866FF" radius={[2, 2, 2, 2]} />
-                      <Bar dataKey="TikTok" stackId="a" fill="#000000" radius={[2, 2, 2, 2]} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                <div style={{ display: 'flex', gap: '12px', fontSize: '13px', fontWeight: 500, color: 'var(--ink)' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }} title="Shopee">
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#EE4D2D' }}></span> {product.platformSales.shopee}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }} title="Lazada">
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#000080' }}></span> {product.platformSales.lazada}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }} title="Facebook">
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#0866FF' }}></span> {product.platformSales.facebook}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }} title="TikTok">
+                    <span style={{ width: '8px', height: '8px', borderRadius: '50%', background: '#121212' }}></span> {product.platformSales.tiktok}
+                  </div>
                 </div>
               </div>
             ))}
