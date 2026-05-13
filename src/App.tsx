@@ -501,9 +501,7 @@ function App() {
     <div className="page">
       <header className="topbar">
         <div className="brand">
-          <div className="brand-mark" aria-hidden="true">
-            <span>★</span>
-          </div>
+          <img className="brand-logo" src="/logo.png" alt="TindaSync Logo" />
           <div>
             <p className="brand-title">TindaSync</p>
             <p className="brand-tagline">Sell Everywhere. Sync Effortlessly.</p>
